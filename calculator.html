@@ -3,13 +3,13 @@
   <head>
     <meta charset="utf-8">
     <title>Calculator</title>
-    <script src="../angular.js"></script>
+    <script src="angular.js"></script>
     <script>
     var app = angular.module('app', []);
 
-    app.factory('calculatorService', function() {
+    app.factory('formula', function() {
       return {
-        calculatorMethod: function(a, b, c) {
+        calculate: function(a, b, c) {
           return a + b - c;
         }
       };
@@ -17,25 +17,25 @@
 
 
 
-    app.controller('Controller', function($scope, calculatorService) {
+    app.controller('Controller', function($scope, formula) {
       // extract the formula below into a service
       // the line below show be changed to:
       // $scope.d = formula.calculate($scope.a, $scope.b, $scope.c)
       // while formula is a service
       $scope.calculate = function() {
-      $scope.d = calculatorService.calculate($scope.a, $scope.b, $scope.c);
+      $scope.d = formula.calculate($scope.a, $scope.b, $scope.c);
       };
     });
     </script>
   </head>
   <body ng-app="app" ng-controller="Controller">
-    <input type="text" ng-model="a">
+    <input type="number" ng-model="a">
     +
-    <input type="text" ng-model="b">
+    <input type="number" ng-model="b">
     -
-    <input type="text" ng-model="c">
+    <input type="number" ng-model="c">
     =
-    <input type="text" ng-model="d">
+    <input type="number" ng-model="d">
     <button ng-click="calculate()">calculate</button>
   </body>
 </html>
